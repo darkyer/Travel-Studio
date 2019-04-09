@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Place Searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 425px;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div>
+        <div class="form-group">
+            <label for="place">Search</label>
+            <input type="text" class="form-control" id="place" placeholder="search for a place">
+        </div>
+        <button id="search" class="btn btn-primary">Submit</button>
+    </div>
+
+    <div class="container">
+        <div id="map" class="row"></div>
+    </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuAnrF-SWPMrbAPVUjtNg9urdaaneF08c&libraries=places"></script>
+    <script>
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuAnrF-SWPMrbAPVUjtNg9urdaaneF08c&libraries=places">
+        var map;
+        var infowindow;
+        var service;
+        var lat;
+        var long;
+        var autoComplete;
+
+        Geolocate();
+
+
+        $("#search").on("click", function (event) {
+            event.preventDefault();
+            $("#map").empty();
+            var search = $("#place").val().trim();
+            
+            // var location = new google.maps.LatLng(21.1266, -101.6642);
+            console.log("coordinates: " + lat + " " + long);
+            var location = new google.maps.LatLng(lat, long);
+
+            var request = {
+                location: location,
+                radius: 8000,
+                query: search,
+                fields: ['name'],
+            };
+
+            service = new google.maps.places.PlacesService(document.createElement('div'));
+
+            service.textSearch(request, function (results, status) {
+                console.log(results.length);
+                var placeID;
+                var request2;
+
+
+                for (var i = 0; i < results.length; i++) {
+
+                    placeID = results[i].place_id;
+                    request2 = {
+                        placeId: placeID
+                    };
+                    // console.log(results[i].place_id);
+                    service.getDetails(request2, function (place, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            CreateCard(place)
+                            // console.log(place);
+                        }
+                    });
+                }
+
+            });
+
+
+        });
+
+        function CreateCard(data) {
+
+            var mainDiv = $("<div>");
+            mainDiv.addClass("col-sm-4 col-md-4 col-lg-3 mb-3");
+
+
+            var cardDiv = $("<div>");
+            cardDiv.addClass("card");
+            // cardDiv.attr("style", "height: 500px;")
+
+            var img = $("<img>");
+            img.addClass("card-img-top");
+            img.attr("style", "height: 250px; object-fit: cover;");
+
+            // If the data doesn't have image, we use a placeholder of no image
+            if (data.photos != undefined) {
+                img.attr("src", data.photos[0].getUrl({ maxWidth: 250, maxHeight: 250 }));
+            } else {
+                img.attr("src", "https://t1.ftcdn.net/jpg/02/34/12/70/400_F_234127038_RvVUG0OwUX6iPz1IkXMS4kVO4vmi9iTR.jpg");
+            }
+
+            var cardBodyDiv = $("<div>");
+            cardBodyDiv.addClass("card-body");
+
+            var name = $("<h5>");
+            name.text(data.name);
+
+            var address = $("<p>");
+            address.text(data.formatted_address);
+
+            var rate = $("<p>");
+            rate.text(data.rating);
+
+            var button = $("<a>");
+            button.addClass("btn btn-primary");
+            button.attr("href", data.url);
+            button.attr("target", "_blank");
+            button.text("Open on Google Maps");
+
+            cardBodyDiv.append(name);
+            cardBodyDiv.append(address);
+            cardBodyDiv.append(rate);
+            cardBodyDiv.append(button);
+
+            cardDiv.append(img);
+            cardDiv.append(cardBodyDiv);
+
+            mainDiv.append(cardDiv);
+
+            $("#map").append(mainDiv);
+        }
+
+        function Geolocate() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(GetPosition, HandleGeoError);
+            } else {
+                console.log("eh");
+                CreateLocationForm();
+            }
+        }
+
+        function GetPosition(position) {
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+            console.log("coordinates: " + lat + " " + long);
+        }
+
+        function HandleGeoError(err) {
+            if (err.code == 1) {
+                CreateLocationForm();
+            }
+        }
+
+        function CreateLocationForm() {
+            var newForm = $("<label>");
+            newForm.attr("for", "location");
+            newForm.text("Location");
+
+            var newInput = $("<input>");
+            newInput.attr("type", "text");
+            newInput.attr("id", "location");
+            newInput.addClass("form-control");
+            newInput.attr("placeholder", "Enter your location");
+
+            $(".form-group").prepend(newInput);
+            $(".form-group").prepend(newForm);
+            ActivateAutoComplete();
+        }
+
+        function ActivateAutoComplete() {
+            var input = document.getElementById('location');
+            autoComplete = new google.maps.places.Autocomplete(input);
+            autoComplete.setFields(
+                ['address_components', 'geometry', 'icon', 'name']);
+
+            autoComplete.addListener('place_changed', function () {
+                var place = autoComplete.getPlace();
+                console.log(place);
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                lat = place.geometry.location.lat();
+                long = place.geometry.location.lng();
+
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>
