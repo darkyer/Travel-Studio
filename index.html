@@ -42,11 +42,9 @@
         <div id="map" class="row"></div>
     </div>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuAnrF-SWPMrbAPVUjtNg9urdaaneF08c&libraries=places"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsavnJmRyhuNuzBeUljqT5SAxSIDKR0Lo&libraries=places"></script>
     <script>
-        // This example requires the Places library. Include the libraries=places
-        // parameter when you first load the API. For example:
-        // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuAnrF-SWPMrbAPVUjtNg9urdaaneF08c&libraries=places">
+
         var map;
         var infowindow;
         var service;
@@ -70,20 +68,18 @@
                 location: location,
                 radius: 8000,
                 query: search,
-                fields: ['name'],
+                // fields: ['name', 'geometry', 'place_id', 'photo'],
             };
 
             service = new google.maps.places.PlacesService(document.createElement('div'));
 
-            service.textSearch(request, function (results, status) {
-                console.log(results.length);
-                var placeID;
-                var request2;
-
+            service.nearbySearch(request, function (results, status) {
 
                 for (var i = 0; i < results.length; i++) {
 
+                    console.log(results[i]);
                     placeID = results[i].place_id;
+                    // CreateCard(results[i]);
                     request2 = {
                         placeId: placeID
                     };
@@ -91,7 +87,7 @@
                     service.getDetails(request2, function (place, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
                             CreateCard(place)
-                            // console.log(place);
+                            console.log(place);
                         }
                     });
                 }
