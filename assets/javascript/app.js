@@ -4,19 +4,25 @@
 var map;
 var infowindow;
 var service;
-var lattitude;
-var longitude;
+var lattitude = 0;
+var longitude = 0;
 var autoComplete;
 var directionsService;
 var directionsDisplay;
 
-Geolocate();
-
+// Geolocate();
+ActivateAutoComplete();
 
 $("#search").on("click", function (event) {
 
     // Prevent default action of button
     event.preventDefault();
+
+    if (lattitude == 0 || longitude == 0) {
+        $("#no-location-modal").modal();
+        return;
+    }
+
 
     // Clear card content for new refill
     $("#cards").empty();
@@ -24,6 +30,10 @@ $("#search").on("click", function (event) {
     // Save search word in a variable
     var search = $("#place").val().trim();
 
+    if (search == "") {
+        $("#no-search-modal").modal();
+        return;
+    }
     // Service and render for route calculation
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -70,7 +80,7 @@ $("#search").on("click", function (event) {
     service = new google.maps.places.PlacesService(document.createElement('div'));
 
     service.nearbySearch(request, function (results, status) {
-        
+
         console.log("Number of results: " + results.length);
         // console.log(results);
 
@@ -85,6 +95,12 @@ $("#search").on("click", function (event) {
 
 });
 
+$("#get-location").on("click", function (event) {
+    // Prevent default action of button
+    event.preventDefault();
+    Geolocate();
+
+});
 
 // Create each card with the information from the request
 function CreateCard(data) {
@@ -161,7 +177,7 @@ function CreateCard(data) {
 // Geolocalization that asking user if want to share location and if geolocation is not enabled/available we create the location form
 function Geolocate() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(GetPosition, HandleGeoError);
+        navigator.geolocation.getCurrentPosition(GetPosition);
     } else {
         CreateLocationForm();
     }
@@ -171,32 +187,19 @@ function Geolocate() {
 function GetPosition(position) {
     lattitude = position.coords.latitude;
     longitude = position.coords.longitude;
+
     console.log("coordinates: " + lattitude + " " + longitude);
+
+    var latLng = new google.maps.LatLng(lattitude, longitude);
+    var geocoder = new google.maps.Geocoder();
+    var address;
+    geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+        console.log(results[0].formatted_address);
+        address = results[0].formatted_address;
+        $("#location").attr("value", address);
+    });
 }
 
-// Enable location form if the user deny the sharing the location
-function HandleGeoError(err) {
-    if (err.code == 1) {
-        CreateLocationForm();
-    }
-}
-
-// Creates a form for user to input location manually with auto-complete
-function CreateLocationForm() {
-    var newForm = $("<label>");
-    newForm.attr("for", "location");
-    newForm.text("Location");
-
-    var newInput = $("<input>");
-    newInput.attr("type", "text");
-    newInput.attr("id", "location");
-    newInput.addClass("form-control");
-    newInput.attr("placeholder", "Enter your location");
-
-    $(".form-group").prepend(newInput);
-    $(".form-group").prepend(newForm);
-    ActivateAutoComplete();
-}
 
 // Enables auto-complete
 function ActivateAutoComplete() {

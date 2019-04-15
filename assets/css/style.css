@@ -12,11 +12,34 @@ body {
     padding: 0;
 }
 
+/* Icon of cards */
 .fas{
     color: #007bff;
     padding-right: 5px;
 }
 
+/* Icon of card button */
 .fa-car{
     color:white;
 }
+
+/* Main Header BG */
+.full-width{
+    height: 698px;
+    background-image: url("http://minimums.com/wp-content/uploads/2017/04/DSC07339.jpeg");
+    background-position: center center;
+}
+
+/* Vertical align of main form */
+.vertical-center {
+    min-height: 100%;  
+  
+    display: flex;
+    align-items: center;
+  }
+
+  .row{
+    margin:0px;
+  }
+
+  

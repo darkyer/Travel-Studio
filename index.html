@@ -12,26 +12,89 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
 
-
-    <div>
-        <div class="form-group">
-            <label for="place">Search</label>
-            <input type="text" class="form-control" id="place" placeholder="search for a place">
+    <div class="full-width mb-4">
+        <div class="container vertical-center">
+            <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  w-100">
+                    <div class="form-group">
+                        <input type="text" id="location" class="form-control mb-1" placeholder="Enter your Location">
+                        <button id="get-location" class="btn btn-primary" type="submit">Get Location</button>
+                    </div>
+                    <form class="form-wrapper cf">
+                        <input type="text" id="place" class="form-control mb-1" placeholder="Search for a place">
+                        <button id="search" class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button id="search" class="btn btn-primary">Submit</button>
-    </div>
 
+    </div>
     <div class="container">
         <div id="map" class="row mb-4"></div>
         <div id="cards" class="row"></div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsavnJmRyhuNuzBeUljqT5SAxSIDKR0Lo&libraries=places">
+
+    <!-- Modal No Location-->
+    <div class="modal fade" id="no-location-modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">No Location Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You haven't defined a location, use the location bar or the get location button and accept the location permission ask.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal No Search-->
+        <div class="modal fade" id="no-search-modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Empty Search</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You haven't defined a search value, please write something in the search bar.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=---------KEYHERE----------&libraries=places">
     </script>
     <script src="assets/javascript/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
