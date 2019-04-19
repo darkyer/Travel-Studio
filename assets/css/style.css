@@ -19,8 +19,8 @@ body {
 }
 
 /* Icon of card button */
-.fa-car{
-    color:white;
+.fa-car, .fa-map-marker-alt, .fa-search{
+    color:white !important;
 }
 
 /* Main Header BG */
@@ -56,7 +56,7 @@ body {
     background-color: rgb(73, 73, 73);
   }
 
-  .subheader-text{
+  .subheader-text, .form-control, .form-control::placeholder, .form-control:focus{
     color: rgb(182, 182, 182);
   }
 

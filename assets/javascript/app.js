@@ -5,6 +5,9 @@
 
 $(document).ready(function () {
 
+    $("#location").val("");
+    $("#place").val("");
+    
     var map;
     var infowindow;
     var service;
@@ -113,6 +116,14 @@ $(document).ready(function () {
             console.log("Number of results: " + results.length);
             // console.log(results);
 
+            if(results.length == 0){
+                var noResultsDiv = $("<div>");
+                var noResultsText = $("<h2>");
+                noResultsText.text("No Results Found, try again with a different parameter");
+                noResultsDiv.append(noResultsText);
+                $("#cards").append(noResultsDiv);
+            }
+
             for (var i = 0; i < results.length; i++) {
                 // console.log(results[i]);
                 CreateMarker(results[i]);
@@ -135,6 +146,7 @@ $(document).ready(function () {
     // Create each card with the information from the request
     function CreateCard(data) {
 
+        
         // Creates the main div where we append everything
         var mainDiv = $("<div>");
         mainDiv.addClass("col-sm-6 col-md-4 col-lg-3 mb-3");
