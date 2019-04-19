@@ -60,6 +60,10 @@ body {
     color: rgb(182, 182, 182);
   }
 
+  .result-form-control{
+    color: #1a1a1a;
+  }
+
   /*********CAROUSEL*********/
   .carousel-item {
     height: 100vh;
