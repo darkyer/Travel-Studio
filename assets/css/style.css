@@ -26,8 +26,8 @@ body {
 /* Main Header BG */
 .full-width{
     height: 100%;
-    background-image: url("http://minimums.com/wp-content/uploads/2017/04/DSC07339.jpeg");
-    background-position: center center;
+    /* background-image: url("http://minimums.com/wp-content/uploads/2017/04/DSC07339.jpeg");
+    background-position: center center; */
 }
 
 /* Vertical align of main form */
@@ -59,4 +59,20 @@ body {
   .subheader-text{
     color: rgb(182, 182, 182);
   }
-  
+
+  /*********CAROUSEL*********/
+  .carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .carousel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

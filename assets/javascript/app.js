@@ -13,6 +13,10 @@ var directionsDisplay;
 // Geolocate();
 ActivateAutoComplete();
 
+$(document.body).on("click", ".header-logo", function(){
+    location.reload();
+});
+
 $("#search").on("click", function (event) {
 
     // Prevent default action of button
@@ -26,6 +30,7 @@ $("#search").on("click", function (event) {
     $(".main-content").removeAttr("hidden");
 
     $(".full-width").attr("hidden", "true");
+    $(".carousel").attr("hidden", "true");
 
     // Clear card content for new refill
     $("#cards").empty();
