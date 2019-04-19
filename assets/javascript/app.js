@@ -156,7 +156,7 @@ function CreateCard(data) {
 
     // Card div
     var cardDiv = $("<div>");
-    cardDiv.addClass("card");
+    cardDiv.addClass("card .z-depth-1-half");
 
     // Image of the card
     var img = $("<img>");
@@ -192,7 +192,7 @@ function CreateCard(data) {
 
     //Card button with function of get route and icon
     var button = $("<button>");
-    var buttonIcon = $("<i class='fas fa-car'></i>");
+    var buttonIcon = $("<i class='fas fa-car icon-white'></i>");
     button.addClass("btn btn-lg btn-rounded btn-floating purple-gradient btn-block text-white");
     button.attr("onclick", "CalcRoute(" +
         lattitude + "," +
