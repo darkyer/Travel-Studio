@@ -23,6 +23,9 @@ $("#search").on("click", function (event) {
         return;
     }
 
+    $(".main-content").removeAttr("hidden");
+
+    $(".full-width").attr("hidden", "true");
 
     // Clear card content for new refill
     $("#cards").empty();

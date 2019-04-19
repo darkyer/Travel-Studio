@@ -17,10 +17,54 @@
 
 <body>
 
-    <div class="full-width mb-4">
+    <div class="full-width">
         <div class="container vertical-center">
             <div class="row w-100">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12  w-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="text-center mb-4">
+                        <img src="assets/images/logo.png" class="img-fluid" alt="Travel Studio">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="location" class="form-control mb-1" placeholder="Enter your Location">
+                        <button id="get-location" class="btn btn-primary" type="submit">Get Location</button>
+                    </div>
+                    <form class="form-wrapper cf">
+                        <input type="text" id="place" class="form-control mb-1" placeholder="Search for a place">
+                        <button id="search" class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" hidden>
+        <div class="small-header">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="text-center mb-4">
+                            <img src="assets/images/logo.png" class="header-logo" alt="Travel Studio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheader">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="text-center mb-4">
+                            <p class="subheader-text pt-3">texto texto texto texto texto texto texto texto</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                     <div class="form-group">
                         <input type="text" id="location" class="form-control mb-1" placeholder="Enter your Location">
                         <button id="get-location" class="btn btn-primary" type="submit">Get Location</button>
@@ -33,15 +77,17 @@
             </div>
         </div>
 
-    </div>
-    <div class="container">
-        <div id="map" class="row mb-4"></div>
-        <div id="cards" class="row"></div>
+        <div class="container mt-4">
+            <div id="map" class="row mb-4"></div>
+            <div id="cards" class="row"></div>
+        </div>
     </div>
 
+
+
     <!-- Modal No Location-->
-    <div class="modal fade" id="no-location-modal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="no-location-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,7 +97,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    You haven't defined a location, use the location bar or the get location button and accept the location permission ask.
+                    You haven't defined a location, use the location bar or the get location button and accept the
+                    location permission ask.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -60,9 +107,9 @@
         </div>
     </div>
 
-        <!-- Modal No Search-->
-        <div class="modal fade" id="no-search-modal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- Modal No Search-->
+    <div class="modal fade" id="no-search-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -82,7 +129,7 @@
     </div>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=---------KEYHERE----------&libraries=places">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsavnJmRyhuNuzBeUljqT5SAxSIDKR0Lo&libraries=places">
     </script>
     <script src="assets/javascript/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

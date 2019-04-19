@@ -25,7 +25,7 @@ body {
 
 /* Main Header BG */
 .full-width{
-    height: 698px;
+    height: 100%;
     background-image: url("http://minimums.com/wp-content/uploads/2017/04/DSC07339.jpeg");
     background-position: center center;
 }
@@ -42,4 +42,21 @@ body {
     margin:0px;
   }
 
+  .small-header{
+      height: 100px;
+      background-color: rgb(51, 51, 51);
+  }
+
+  .header-logo{
+      margin-top:10px;
+      width:150px;
+  }
+
+  .subheader{
+    background-color: rgb(73, 73, 73);
+  }
+
+  .subheader-text{
+    color: rgb(182, 182, 182);
+  }
   
