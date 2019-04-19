@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Place Searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="carousel slide " data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url('assets/images/slider1.jpg')"
+                data-interval="4000">
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('assets/images/slider2.jpg')" data-interval="4000">
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('assets/images/slider3.jpg')" data-interval="4000">
+            </div>
+        </div>
+    </div>
+
+    <div class="full-width">
+        <div class="container vertical-center">
+            <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="text-center mb-4">
+                        <img src="assets/images/logo.png" class="img-fluid" alt="Travel Studio">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="md-form">
+                        <input type="text" id="location" class="form-control"
+                            placeholder="Enter your Location or use the Get location button">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="md-form">
+                        <input type="text" id="place" class="form-control" placeholder="Search for a place">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button id="get-location" class="btn btn-lg btn-rounded btn-floating purple-gradient text-white"
+                        type="submit">
+                        <i class="fas fa-map-marker-alt mr-1 icon-white"></i>
+                        Get Location</button>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button id="search" class="btn btn-lg btn-rounded btn-floating purple-gradient text-white"
+                        type="submit">
+                        <i class="fas fa-search mr-1 icon-white"></i>
+                        Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="main-content" hidden>
+        <div class="small-header">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="text-center mb-4">
+                            <img src="assets/images/logo.png" class="header-logo" alt="Travel Studio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheader">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="text-center mb-4">
+                            <p class="subheader-text pt-3">Trending places</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+                    <div class="md-form">
+                        <h4>Search different place</h4>
+                        <input type="text" id="place-result" class="result-form-control form-control mb-1" placeholder="Search for a place">
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 pt-4">
+                    <button id="search" class="btn btn-lg btn-rounded btn-floating purple-gradient text-white"
+                        type="submit">
+                        <i class="fas fa-search mr-1"></i>
+                        Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div id="map" class="row mb-4"></div>
+            <div id="cards" class="row"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal No Location-->
+    <div class="modal fade" id="no-location-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">No Location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You haven't defined a location, use the location bar or the get location button and accept the
+                    location permission ask.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal No Search-->
+    <div class="modal fade" id="no-search-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Empty Search</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You haven't defined a search value, please write something in the search bar.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzG1WK0ZKjuDoxsLdv69zHb3t_wvW1FNs&libraries=places">
+    </script>
+    <script src="assets/javascript/app.js"></script>
+
+
+</body>
+
+</html>
