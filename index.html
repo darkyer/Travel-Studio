@@ -17,19 +17,19 @@
 
 <body>
 
-    <div class="carousel slide" data-ride="carousel">
+    <div class="carousel slide " data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item active"
-                style="background-image: url('assets/images/slider1.jpg')">
+                style="background-image: url('assets/images/slider1.jpg')" data-interval="4000">
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item"
-                style="background-image: url('assets/images/slider2.jpg')">
+                style="background-image: url('assets/images/slider2.jpg')" data-interval="4000">
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item"
-                style="background-image: url('assets/images/slider3.jpg')">
+                style="background-image: url('assets/images/slider3.jpg')" data-interval="4000">
             </div>
         </div>
     </div>
@@ -82,13 +82,9 @@
         <div class="container mt-4">
             <div class="row w-100">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                    <div class="form-group">
-                        <input type="text" id="location" class="form-control mb-1" placeholder="Enter your Location">
-                        <button id="get-location" class="btn btn-primary" type="submit">Get Location</button>
-                    </div>
                     <form class="form-wrapper cf">
-                        <input type="text" id="place" class="form-control mb-1" placeholder="Search for a place">
-                        <button id="search" class="btn btn-primary" type="submit">Search</button>
+                        <input type="text" id="place-map" class="form-control mb-1" placeholder="Search for a place">
+                        <button id="search-map" class="btn btn-primary" type="submit">Search</button>
                     </form>
                 </div>
             </div>

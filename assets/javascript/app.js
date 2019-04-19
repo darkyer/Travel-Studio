@@ -37,6 +37,7 @@ $("#search").on("click", function (event) {
 
     // Save search word in a variable
     var search = $("#place").val().trim();
+    $("#place-map").val(search);
 
     if (search == "") {
         $("#no-search-modal").modal();
@@ -49,6 +50,81 @@ $("#search").on("click", function (event) {
 
     // Set location
     console.log("coordinates: " + lattitude + " " + longitude);
+    var location = new google.maps.LatLng(lattitude, longitude);
+
+    infowindow = new google.maps.InfoWindow();
+
+    // Init google map && set the map to the display route service
+    map = new google.maps.Map(document.getElementById('map'), { center: location, zoom: 15 });
+    directionsDisplay.setMap(map);
+
+    // Create Location Marker
+    var myLatLng = { lat: lattitude, lng: longitude };
+    var homeIcon = {
+        url: "assets/images/location.png", // url
+        scaledSize: new google.maps.Size(40, 40), // scaled size
+    };
+    var markerHome = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: homeIcon,
+        title: "Current Location"
+    });
+
+    // Add listener for clicking the marker
+    google.maps.event.addListener(markerHome, 'click', function () {
+        infowindow.setContent(markerHome.title);
+        infowindow.open(map, this);
+    });
+
+    // Set up of request for google places
+    var request = {
+        location: location,
+        radius: 8000,
+        keyword: search,
+        fields: ['name', 'formatted_address', 'url', 'rating']
+    };
+
+    service = new google.maps.places.PlacesService(document.createElement('div'));
+
+    service.nearbySearch(request, function (results, status) {
+
+        console.log("Number of results: " + results.length);
+        // console.log(results);
+
+        for (var i = 0; i < results.length; i++) {
+            // console.log(results[i]);
+            CreateMarker(results[i]);
+            CreateCard(results[i]);
+        }
+
+    });
+
+
+});
+
+$("#search-map").on("click", function (event) {
+
+    // Prevent default action of button
+    event.preventDefault();
+
+    // Clear card content for new refill
+    $("#cards").empty();
+
+    // Save search word in a variable
+    var search = $("#place-map").val().trim();
+    $("#place-map").val(search);
+    
+    if (search == "") {
+        $("#no-search-modal").modal();
+        return;
+    }
+    // Service and render for route calculation
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
+
+    // Set location
     var location = new google.maps.LatLng(lattitude, longitude);
 
     infowindow = new google.maps.InfoWindow();
@@ -204,7 +280,7 @@ function GetPosition(position) {
     geocoder.geocode({ 'latLng': latLng }, function (results, status) {
         console.log(results[0].formatted_address);
         address = results[0].formatted_address;
-        $("#location").attr("value", address);
+        $("#location").val(address);
     });
 }
 
