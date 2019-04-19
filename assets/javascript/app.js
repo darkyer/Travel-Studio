@@ -190,7 +190,7 @@ $(document).ready(function () {
         //Card button with function of get route and icon
         var button = $("<button>");
         var buttonIcon = $("<i class='fas fa-car'></i>");
-        button.addClass("btn btn-primary btn-block");
+        button.addClass("btn btn-lg btn-rounded btn-floating purple-gradient btn-block text-white");
         button.attr("onclick", "CalcRoute(" +
             lattitude + "," +
             longitude + "," +
