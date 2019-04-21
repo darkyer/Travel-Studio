@@ -23,6 +23,10 @@ body {
     color:white !important;
 }
 
+.header-logo{
+  cursor: pointer;
+}
+
 /* Main Header BG */
 .full-width{
     height: 100%;

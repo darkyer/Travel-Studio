@@ -175,7 +175,7 @@ function CreateCard(data) {
     cardBodyDiv.addClass("card-body");
 
     // Card Name
-    var name = $("<h5>");
+    var name = $("<h4>");
     name.text(data.name);
 
     //Card address and icon
@@ -288,6 +288,7 @@ function CreateMarker(place) {
 
 // Calculate route
 function CalcRoute(startLat, startLon, endLat, endLong) {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
     var startMap = new google.maps.LatLng(startLat, startLon);
     var endMap = new google.maps.LatLng(endLat, endLong);
     var request = {
