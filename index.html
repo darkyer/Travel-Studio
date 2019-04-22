@@ -1,240 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--<link href="assets/css/style.css" rel="stylesheet">-->
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    <!-- Places Library -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDheI0c_l_JaucbcUTP3nsDxYu2il8f1dM&libraries=places"></script>
+    <title>Place Searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Title</title>
-
-    <!-- Map Style-->
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map {
-            height: 425px;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        #description {
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-        }
-
-        #infowindow-content .title {
-            font-weight: bold;
-        }
-
-        #infowindow-content {
-            display: none;
-        }
-
-        #map #infowindow-content {
-            display: inline;
-        }
-
-        .pac-card {
-            margin: 10px 10px 0 0;
-            border-radius: 2px 0 0 2px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            outline: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            background-color: #fff;
-            font-family: Roboto;
-        }
-
-        #pac-container {
-            padding-bottom: 12px;
-            margin-right: 12px;
-        }
-
-        .pac-controls {
-            display: inline-block;
-            padding: 5px 11px;
-        }
-
-        .pac-controls label {
-            font-family: Roboto;
-            font-size: 13px;
-            font-weight: 300;
-        }
-
-        #pac-input {
-            background-color: #fff;
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-            margin-left: 12px;
-            padding: 0 11px 0 13px;
-            text-overflow: ellipsis;
-            width: 400px;
-        }
-
-        #pac-input:focus {
-            border-color: #4d90fe;
-        }
-
-        #title {
-            color: #fff;
-            background-color: #4d90fe;
-            font-size: 25px;
-            font-weight: 500;
-            padding: 6px 12px;
-        }
-    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div id="tag-id">Div</div>
-    <h1 id="header1">Test</h1>
-</div>
-<div class="pac-card" id="pac-card">
-    <div>
-        <div id="title">
-            Autocomplete search
-        </div>
-        <div id="type-selector" class="pac-controls">
-            <input type="radio" name="type" id="changetype-all" checked="checked">
-            <label for="changetype-all">All</label>
+<form action="#" class="contact">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" placeholder="example@gmail.com">
+    <label for="email">Password</label>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <button type="button" id="bt_login">Iniciar sesión</button>
+</form>
 
-            <input type="radio" name="type" id="changetype-establishment">
-            <label for="changetype-establishment">Establishments</label>
-
-            <input type="radio" name="type" id="changetype-address">
-            <label for="changetype-address">Addresses</label>
-
-            <input type="radio" name="type" id="changetype-geocode">
-            <label for="changetype-geocode">Geocodes</label>
-        </div>
-        <div id="strict-bounds-selector" class="pac-controls">
-            <input type="checkbox" id="use-strict-bounds" value="">
-            <label for="use-strict-bounds">Strict Bounds</label>
+    <div class="carousel slide " data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url('assets/images/slider1.jpg')"
+                data-interval="4000">
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('assets/images/slider2.jpg')" data-interval="4000">
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('assets/images/slider3.jpg')" data-interval="4000">
+            </div>
         </div>
     </div>
-    <div id="pac-container">
-        <input id="pac-input" type="text"
-               placeholder="Enter a location">
+
+    <div class="full-width">
+        <div class="container vertical-center">
+            <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="text-center mb-4">
+                        <img src="assets/images/logo.png" class="img-fluid" alt="Travel Studio">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="md-form">
+                        <input type="text" id="location" class="form-control"
+                            placeholder="Enter your Location or use the Get location button">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="md-form">
+                        <input type="text" id="place" class="form-control" placeholder="Search for a place">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button id="get-location" class="btn btn-lg btn-rounded btn-floating purple-gradient text-white"
+                        type="submit">
+                        <i class="fas fa-map-marker-alt mr-1 icon-white"></i>
+                        Get Location</button>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button id="search" class="btn btn-lg btn-rounded btn-floating purple-gradient text-white"
+                        type="submit">
+                        <i class="fas fa-search mr-1 icon-white"></i>
+                        Search</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div id="map"></div>
-<div id="infowindow-content">
-    <img src="" width="16" height="16" id="place-icon">
-    <span id="place-name"  class="title"></span><br>
-    <span id="place-address"></span>
-</div>
+    </div>
 
-<script>
-    // This example requires the Places library. Include the libraries=places
-    // parameter when you first load the API. For example:
-    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    <div class="main-content" hidden>
+        <div class="small-header">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="text-center mb-4">
+                            <img src="assets/images/logo.png" class="header-logo" role="button" alt="Travel Studio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    window.initMap = function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -33.8688, lng: 151.2195},
-            zoom: 13
-        });
-        var card = document.getElementById('pac-card');
-        var input = document.getElementById('pac-input');
-        var types = document.getElementById('type-selector');
-        var strictBounds = document.getElementById('strict-bounds-selector');
+        <div class="subheader">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="text-center mb-4">
+                            <p class="subheader-text pt-3">Trending places</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+        <div class="container mt-4">
+            <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9 ">
+                    <div class="md-form">
+                        <h4>Search different place</h4>
+                        <input type="text" id="place-result" class="result-form-control form-control mb-1"
+                            placeholder="Search for a place">
+                    </div>
+                </div>
 
-        var autocomplete = new google.maps.places.Autocomplete(input);
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 pt-4">
+                    <button id="search" class="btn btn-lg btn-rounded btn-floating purple-gradient text-white"
+                        type="submit">
+                        <i class="fas fa-search mr-1 icon-white"></i>
+                        Search</button>
+                </div>
+            </div>
+        </div>
 
-        // Bind the map's bounds (viewport) property to the autocomplete object,
-        // so that the autocomplete requests use the current map bounds for the
-        // bounds option in the request.
-        autocomplete.bindTo('bounds', map);
+        <div class="container mt-4">
+            <div id="map" class="row mb-4"></div>
+            <div id="cards" class="row"></div>
+        </div>
+    </div>
 
-        // Set the data fields to return when the user selects a place.
-        autocomplete.setFields(
-            ['address_components', 'geometry', 'icon', 'name']);
 
-        var infowindow = new google.maps.InfoWindow();
-        var infowindowContent = document.getElementById('infowindow-content');
-        infowindow.setContent(infowindowContent);
-        var marker = new google.maps.Marker({
-            map: map,
-            anchorPoint: new google.maps.Point(0, -29)
-        });
 
-        autocomplete.addListener('place_changed', function() {
-            infowindow.close();
-            marker.setVisible(false);
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-                // User entered the name of a Place that was not suggested and
-                // pressed the Enter key, or the Place Details request failed.
-                window.alert("No details available for input: '" + place.name + "'");
-                return;
-            }
+    <!-- Modal No Location-->
+    <div class="modal fade" id="no-location-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">No Location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You haven't defined a location, use the location bar or the get location button and accept the
+                    location permission ask.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            console.log(place)
-            console.log(place.geometry.location.lat())
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);  // Why 17? Because it looks good.
-            }
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
+    <!-- Modal No Search-->
+    <div class="modal fade" id="no-search-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Empty Search</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You haven't defined a search value, please write something in the search bar.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            var address = '';
-            if (place.address_components) {
-                address = [
-                    (place.address_components[0] && place.address_components[0].short_name || ''),
-                    (place.address_components[1] && place.address_components[1].short_name || ''),
-                    (place.address_components[2] && place.address_components[2].short_name || '')
-                ].join(' ');
-            }
+    <script type="text/javascript" src="assets/javascript/firebaseJS.js" ></script>
+    <script type="text/javascript">
+        var config = {
+            apiKey: "AIzaSyBWL9dN_Lhu---5hYFxcD0GhjYKMuiiJqs",
+            authDomain: "travel-studio-eeb16.firebaseapp.com",
+            databaseURL: "https://travel-studio-eeb16.firebaseio.com",
+            projectId: "travel-studio-eeb16",
+            storageBucket: "travel-studio-eeb16.appspot.com",
+            messagingSenderId: "987837392805"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+    <!-- Google API KEY -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzG1WK0ZKjuDoxsLdv69zHb3t_wvW1FNs&libraries=places">
+    </script>
+    <script src="assets/javascript/app.js"></script>
 
-            infowindowContent.children['place-icon'].src = place.icon;
-            infowindowContent.children['place-name'].textContent = place.name;
-            infowindowContent.children['place-address'].textContent = address;
-            infowindow.open(map, marker);
-        });
 
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        function setupClickListener(id, types) {
-            var radioButton = document.getElementById(id);
-            radioButton.addEventListener('click', function() {
-                autocomplete.setTypes(types);
-            });
-        }
-
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
-
-        document.getElementById('use-strict-bounds')
-            .addEventListener('click', function() {
-                console.log('Checkbox clicked! New state=' + this.checked);
-                autocomplete.setOptions({strictBounds: this.checked});
-            });
-    }
-</script>
-<!--
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvaZz-IOoKHsPW0s4Pd3Omf04kvS_fRwY&libraries=places&callback=initMap"
-        async defer></script>
--->
-<script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>

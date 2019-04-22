@@ -1,0 +1,113 @@
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height: 425px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Icon of cards */
+.fas{
+    color: #007bff;
+    padding-right: 5px;
+}
+
+/* Icon of card button */
+.icon-white{
+    color:white !important;
+}
+
+.header-logo{
+  cursor: pointer;
+}
+
+/* Main Header BG */
+.full-width{
+    height: 100%;
+    /* background-image: url("http://minimums.com/wp-content/uploads/2017/04/DSC07339.jpeg");
+    background-position: center center; */
+}
+
+/* Vertical align of main form */
+.vertical-center {
+    min-height: 100%;  
+  
+    display: flex;
+    align-items: center;
+  }
+
+  .row{
+    margin:0px;
+  }
+
+  .small-header{
+      height: 100px;
+      background-color: rgb(51, 51, 51);
+  }
+
+  .header-logo{
+      margin-top:10px;
+      width:150px;
+  }
+
+  .subheader{
+    background-color: rgb(73, 73, 73);
+  }
+
+  .subheader-text, .form-control, .form-control::placeholder, .form-control:focus{
+    color: rgb(182, 182, 182);
+  }
+
+  .result-form-control{
+    color: #1a1a1a;
+  }
+
+  /*********CAROUSEL*********/
+  .carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .carousel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+.contact {
+    width: 540px;
+}
+
+.contact label {
+    display: block;
+    padding-bottom: 0.5em;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    border: 1px solid #cccccc;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    font-size: .9em;
+}
+
+.contact input[type="submit"] {
+    width: auto;
+    background-color: #4aaaa5;
+    color: #ffffff;
+    border: none;
+    padding: 1em 2em;
+    font-size: 1em;
+}
