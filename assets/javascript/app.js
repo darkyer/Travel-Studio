@@ -10,80 +10,14 @@ var autoComplete;
 var directionsService;
 var directionsDisplay;
 var inResultScreen = false;
+// FIREBASE
+var auth = firebase.auth();
+var database = firebase.database();
+
 $(document).ready(function () {
-    //init firebase
-    var auth = firebase.auth();
-
-    $('#bt_login').on("click", function () {
-        const email = $('#email').val();
-        const password = $('#password').val();
-        auth.signInWithEmailAndPassword(email, password).then(function (result) {
-          //LOGIN OK
-        }).catch(function(error) {
-            console.log("errorCode", error.code);
-            console.log("errorMessage", error.message);
-        });
-       /* auth.createUserWithEmailAndPassword(email, password).then(function (result) {
-            //USER CREATED OK
-            console.log("USER CREATED IN AUTH");
-            //save user in database
-            const usuario = {
-                uid: result.user.uid,
-                email: result.user.email,
-            };
-            firebase.database().ref('users').child(result.user.uid).set(usuario).then(function () {
-                console.log("USER CREATED IN DB")
-            }).catch(function (error) {
-                console.log("ERROR", error);
-            });
-        }).catch(function (error) {
-            console.log("errorCode", error.code);
-            console.log("errorMessage", error.message);
-        });*/
-    });
-
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            console.log(email)
-            // ...
-            //check if the user has last location saved
-            firebase.database().ref('users').child(uid).once('value').then(function (snapshot) {
-                const userData = snapshot.val();
-                if (userData.lat && userData.lng) {
-                    lattitude = userData.lat;
-                    longitude = userData.lng;
-                    var latLng = new google.maps.LatLng(userData.lat, userData.lng);
-                    var geocoder = new google.maps.Geocoder();
-                    var address;
-                    geocoder.geocode({ 'latLng': latLng }, function (results, status) {
-                        console.log(results[0].formatted_address);
-                        address = results[0].formatted_address;
-                        $("#location").val(address);
-                    });
-                } else {
-                    console.log("NO LAST LOCATION");
-                }
-            });
-        } else {
-            // User is signed out.
-            // ...
-        }
-    });
 
     $("#location").val("");
     $("#place").val("");
-    $("#email").val("correo@correo.com");
-    $("#password").val("correo123");
-
 
     // Geolocate();
     ActivateAutoComplete();
@@ -96,12 +30,9 @@ $(document).ready(function () {
     });
 
     $(document.body).on("click", "#search", function (event) {
-
         // Prevent default action of button
         event.preventDefault();
-
         var search = "";
-
         if (lattitude == 0 || longitude == 0) {
             $("#no-location-modal").modal();
             return;
@@ -109,7 +40,6 @@ $(document).ready(function () {
 
         // Clear card content for new refill
         $("#cards").empty();
-
 
         // Check if we are in the home screen or in the result screen
         if (!inResultScreen) {
@@ -125,17 +55,14 @@ $(document).ready(function () {
             return;
         }
 
-
         $(".main-content").removeAttr("hidden");
-
         $(".full-width").attr("hidden", "true");
         $(".carousel").attr("hidden", "true");
-
         inResultScreen = true;
+
         // Service and render for route calculation
         directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer();
-
 
         // Set location
         console.log("coordinates: " + lattitude + " " + longitude);
@@ -178,10 +105,7 @@ $(document).ready(function () {
         service = new google.maps.places.PlacesService(document.createElement('div'));
 
         service.nearbySearch(request, function (results, status) {
-
             console.log("Number of results: " + results.length);
-            // console.log(results);
-
             if (results.length == 0) {
                 var noResultsDiv = $("<div>");
                 var noResultsText = $("<h2>");
@@ -197,22 +121,115 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * FIREBASE
+     */
+
+    // Auth state listener
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+
+            console.log(email)
+            // Changing visibility of btns
+            $('#bt_sign_out').css('visibility', 'visible');
+            $('#bt_register').css('visibility', 'hidden');
+            // Check if the user has a last location registered
+            database.ref('users').child(uid).once('value').then(function (snapshot) {
+                const userData = snapshot.val();
+                if (userData.lat && userData.lng) {
+                    lattitude = userData.lat;
+                    longitude = userData.lng;
+                    var latLng = new google.maps.LatLng(userData.lat, userData.lng);
+                    var geocoder = new google.maps.Geocoder();
+                    var address;
+                    geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+                        console.log(results[0].formatted_address);
+                        address = results[0].formatted_address;
+                        $("#location").val(address);
+                    });
+                } else {
+                    // No last location saved for the user
+                    console.log("No last location");
+                }
+            });
+        } else {
+            // User is signed out.
+            // ...
+        }
+    });
+
+    // Registration Modal
+    $('#bt_register').click(function () {
+        $('#registration-modal').modal();
+    })
+
+    $('#bt_login').on("click", function () {
+        const email = $('#email').val();
+        const password = $('#password').val();
+        auth.signInWithEmailAndPassword(email, password).then(function (result) {
+            //LOGIN OK
+        }).catch(function(error) {
+            console.log("errorCode", error.code);
+            console.log("errorMessage", error.message);
+        });
+    });
+
+    // Sign out button click
+    $('#bt_sign_out').click(function () {
+        alert("Signed Out!");
+        // Clearing fields
+        $("#location").val("");
+        // Hide sign out button
+        $('#bt_sign_out').css('visibility', 'hidden');
+        auth.signOut();
+    })
+
+    /**
+     *
+     */
 
     $("#get-location").on("click", function (event) {
         // Prevent default action of button
         event.preventDefault();
         Geolocate();
-
     });
 
     // Create each card with the information from the request
-
-
 });
 
+// Register user in Firebase Auth and Database
+function registerUser() {
+    const email = $('#email-form').val();
+    const password = $('#password-form').val();
+    auth.createUserWithEmailAndPassword(email, password).then(function (result) {
+            // User created correctly
+            console.log("USER CREATED IN AUTH");
+            // Data
+            const usuario = {
+                uid: result.user.uid,
+                email: result.user.email,
+            };
+            // Database registration
+            database.ref('users').child(result.user.uid).set(usuario).then(function () {
+                console.log("USER CREATED IN DB")
+            }).catch(function (error) {
+                console.log("ERROR", error);
+            });
+        }).catch(function (error) {
+            console.log("errorCode", error.code);
+            console.log("errorMessage", error.message);
+        });
+}
+
 function CreateCard(data) {
-
-
     // Creates the main div where we append everything
     var mainDiv = $("<div>");
     mainDiv.addClass("col-sm-6 col-md-4 col-lg-3 mb-3");
@@ -305,15 +322,18 @@ function GetPosition(position) {
         $("#location").val(address);
     });
 
+    /**
+     * FIREBASE AUTH
+     */
     if(firebase.auth().currentUser){
-        //guardar última ubicación en database
+        // Saves the location in database
         const usuario = {
             uid: firebase.auth().currentUser.uid,
             email: firebase.auth().currentUser.email,
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
-        firebase.database().ref('users').child(firebase.auth().currentUser.uid).update(usuario).then(function () {
+        database.ref('users').child(firebase.auth().currentUser.uid).update(usuario).then(function () {
             console.log("REGISTRO USER LOCATION OK");
         }).catch(function (error) {
             console.log("ERROR SAVING USER LOCATION", error);
@@ -321,9 +341,10 @@ function GetPosition(position) {
     }else{
         console.log("No hay sesion")
     }
-
+    /**
+     *
+     */
 }
-
 
 // Enables auto-complete
 function ActivateAutoComplete() {

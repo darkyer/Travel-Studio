@@ -18,13 +18,18 @@
 
 <body>
 
-<form action="#" class="contact">
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" placeholder="example@gmail.com">
-    <label for="email">Password</label>
-    <input type="password" name="password" id="password" placeholder="Password">
-    <button type="button" id="bt_login">Iniciar sesión</button>
-</form>
+    <!-- AUTHENTICATION -->
+    <div id="authentication" class="container">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="example@gmail.com">
+        <label for="email">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password">
+        <button type="button" id="bt_login">Log In</button>
+
+        <button type="button" id="bt_sign_out" class="floating-button">Sign Out</button>
+        <button type="button" id="bt_register" class="floating-button">Register</button>
+    </div>
+    <!-- AUTHENTICATION -->
 
     <div class="carousel slide " data-ride="carousel">
         <div class="carousel-inner" role="listbox">
@@ -128,6 +133,30 @@
         </div>
     </div>
 
+    <!-- Modal Registration-->
+    <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email-form" placeholder="example@gmail.com">
+                    <label for="email">Password</label>
+                    <input type="password" name="password"  id="password-form" placeholder="Password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="registerUser()">Accept</button>
+                    <button  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Modal No Location-->
@@ -136,7 +165,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">No Location</h5>
+                    <h5 class="modal-title" >No Location</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -173,6 +202,7 @@
         </div>
     </div>
 
+    <!-- FIREBASE Initialization -->
     <script type="text/javascript" src="assets/javascript/firebaseJS.js" ></script>
     <script type="text/javascript">
         var config = {
@@ -197,8 +227,10 @@
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
     <!-- Google API KEY -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzG1WK0ZKjuDoxsLdv69zHb3t_wvW1FNs&libraries=places">
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzG1WK0ZKjuDoxsLdv69zHb3t_wvW1FNs&libraries=places">
     </script>
+    <!-- JavaScript File -->
     <script src="assets/javascript/app.js"></script>
 
 

@@ -85,29 +85,15 @@ body {
     height: 100%;
 }
 
-
-.contact {
-    width: 540px;
+#authentication{
+margin-top: 10px;
+    z-index: 4;
 }
 
-.contact label {
-    display: block;
-    padding-bottom: 0.5em;
+#bt_sign_out{
+    visibility: hidden;
 }
 
-.contact input, .contact textarea {
-    width: 100%;
-    border: 1px solid #cccccc;
-    margin-bottom: 1.5em;
-    padding: 1em;
-    font-size: .9em;
-}
-
-.contact input[type="submit"] {
-    width: auto;
-    background-color: #4aaaa5;
-    color: #ffffff;
-    border: none;
-    padding: 1em 2em;
-    font-size: 1em;
+.floating-button{
+    float: right;
 }
