@@ -18,17 +18,36 @@
 
 <body>
 
-    <!-- AUTHENTICATION -->
-    <div id="authentication" class="container">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" placeholder="example@gmail.com">
-        <label for="email">Password</label>
-        <input type="password" name="password" id="password" placeholder="Password">
-        <button type="button" id="bt_login">Log In</button>
+    <div class="topnav">
+        <button id="bt_sign_out" class="aux-button">Sign Out</button>
+        <button id="bt_register" class="aux-button">Register</button>
 
-        <button type="button" id="bt_sign_out" class="floating-button">Sign Out</button>
-        <button type="button" id="bt_register" class="floating-button">Register</button>
+
+        <div id="display-name">
+            <p></p>
+        </div>
+
+        <div id="login-container" class="login-container">
+            <form>
+                <input id="email" type="email" placeholder="Username" name="username">
+                <input id="password" type="password" placeholder="Password" name="psw">
+                <button id="bt_login" type="button">Login</button>
+            </form>
+        </div>
     </div>
+
+    <!-- AUTHENTICATION -->
+  <!--  <div class="container">
+        <div class="authentication">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="example@gmail.com">
+            <label for="email">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </div>
+            <button type="button" id="bt_login">Log In</button>
+            <button type="button" id="bt_sign_out">Sign Out</button>
+            <button type="button" id="bt_register">Register</button>
+    </div>-->
     <!-- AUTHENTICATION -->
 
     <div class="carousel slide " data-ride="carousel">
@@ -232,7 +251,6 @@
     </script>
     <!-- JavaScript File -->
     <script src="assets/javascript/app.js"></script>
-
 
 </body>
 

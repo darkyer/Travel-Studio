@@ -137,10 +137,12 @@ $(document).ready(function () {
             var uid = user.uid;
             var providerData = user.providerData;
 
-            console.log(email)
-            // Changing visibility of btns
+            var string = email.split("@");
+            $('#display-name').text(string[0]);
+            // Handling visibility
             $('#bt_sign_out').css('visibility', 'visible');
             $('#bt_register').css('visibility', 'hidden');
+            $('#login-container').css('visibility', 'hidden');
             // Check if the user has a last location registered
             database.ref('users').child(uid).once('value').then(function (snapshot) {
                 const userData = snapshot.val();
@@ -168,7 +170,9 @@ $(document).ready(function () {
 
     // Registration Modal
     $('#bt_register').click(function () {
-        $('#registration-modal').modal();
+        $('#registration-modal').modal({
+            fadeDuration: 100
+        });
     })
 
     $('#bt_login').on("click", function () {
@@ -176,6 +180,7 @@ $(document).ready(function () {
         const password = $('#password').val();
         auth.signInWithEmailAndPassword(email, password).then(function (result) {
             //LOGIN OK
+            //$('#login-container').css('visibility', 'hidden');
         }).catch(function(error) {
             console.log("errorCode", error.code);
             console.log("errorMessage", error.message);
@@ -184,12 +189,17 @@ $(document).ready(function () {
 
     // Sign out button click
     $('#bt_sign_out').click(function () {
+        auth.signOut();
         alert("Signed Out!");
         // Clearing fields
         $("#location").val("");
-        // Hide sign out button
+        $("#email").val("");
+        $("#password").val();
+        // Handling visibility
         $('#bt_sign_out').css('visibility', 'hidden');
-        auth.signOut();
+        $('#bt_register').css('visibility', 'visible');
+        $('#login-container').css('visibility', 'visible');
+        $('#display-name').text("")
     })
 
     /**
@@ -384,7 +394,6 @@ function CreateMarker(place) {
         infowindow.open(map, this);
     });
 }
-
 
 // Calculate route
 function CalcRoute(startLat, startLon, endLat, endLong) {
