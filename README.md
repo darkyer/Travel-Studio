@@ -1,10 +1,10 @@
 # Project Title
 
-TRAVEL STUDIO
+Travel Studio
 
 ## Getting Started
 
-Travel studio is an online app that can search for places near your location or any location in the world.
+Travel Studio is an online app that can search for places near your location or any location in the world.
 
 ## How does it works?
 
