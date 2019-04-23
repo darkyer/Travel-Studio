@@ -121,6 +121,13 @@ $(document).ready(function () {
         });
     });
 
+    $("#get-location").on("click", function (event) {
+        // Prevent default action of button
+        event.preventDefault();
+        Geolocate();
+    });
+
+
     /**
      * FIREBASE
      */
@@ -137,8 +144,6 @@ $(document).ready(function () {
             var uid = user.uid;
             var providerData = user.providerData;
 
-            var string = email.split("@");
-            $('#display-name').text(string[0]);
             // Handling visibility
             $('#bt_sign_out').css('visibility', 'visible');
             $('#bt_register').css('visibility', 'hidden');
@@ -146,6 +151,7 @@ $(document).ready(function () {
             // Check if the user has a last location registered
             database.ref('users').child(uid).once('value').then(function (snapshot) {
                 const userData = snapshot.val();
+                $('#display-name').text(userData.user);
                 if (userData.lat && userData.lng) {
                     lattitude = userData.lat;
                     longitude = userData.lng;
@@ -182,6 +188,7 @@ $(document).ready(function () {
             //LOGIN OK
             //$('#login-container').css('visibility', 'hidden');
         }).catch(function(error) {
+            alert(error.message);
             console.log("errorCode", error.code);
             console.log("errorMessage", error.message);
         });
@@ -206,11 +213,6 @@ $(document).ready(function () {
      *
      */
 
-    $("#get-location").on("click", function (event) {
-        // Prevent default action of button
-        event.preventDefault();
-        Geolocate();
-    });
 
     // Create each card with the information from the request
 });
@@ -219,24 +221,40 @@ $(document).ready(function () {
 function registerUser() {
     const email = $('#email-form').val();
     const password = $('#password-form').val();
-    auth.createUserWithEmailAndPassword(email, password).then(function (result) {
-            // User created correctly
-            console.log("USER CREATED IN AUTH");
-            // Data
-            const usuario = {
-                uid: result.user.uid,
-                email: result.user.email,
-            };
-            // Database registration
-            database.ref('users').child(result.user.uid).set(usuario).then(function () {
-                console.log("USER CREATED IN DB")
+    var queryURL = "http://apilayer.net/api/check?access_key=db5b19ad7744f0ff75ec67c569062ca5&email="
+        + email +"&smtp=1&format=1";
+    // Mailboxlayer API consumption
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(validation){
+        if (validation.format_valid){
+            auth.createUserWithEmailAndPassword(email, password).then(function (result) {
+                // Clear fields
+                $('#email-form').val("");
+                $('#password-form').val("");
+                console.log("USER CREATED IN AUTH");
+                // Data
+                const usuario = {
+                    uid: result.user.uid,
+                    email: result.user.email,
+                    user: validation.user
+                };
+                // Database registration
+                database.ref('users').child(result.user.uid).set(usuario).then(function () {
+                    console.log("USER CREATED IN DB")
+                }).catch(function (error) {
+                    console.log("ERROR", error);
+                });
             }).catch(function (error) {
-                console.log("ERROR", error);
+                console.log("errorCode", error.code);
+                console.log("Registration: errorMessage", error.message);
+                alert(error.message);
             });
-        }).catch(function (error) {
-            console.log("errorCode", error.code);
-            console.log("errorMessage", error.message);
-        });
+        }else{
+            alert("The email is badly formatted")
+        }
+    })
 }
 
 function CreateCard(data) {
