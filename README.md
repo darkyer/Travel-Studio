@@ -39,3 +39,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Raquel Zúñiga
 * Rafael González
 * Enrique Goldman
+
+## URLS
+
+[Github project](https://github.com/darkyer/bootcamp-project-1)
+[Github pages](http://darkyer.github.io/bootcamp-project-1)
