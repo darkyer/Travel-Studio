@@ -47,7 +47,7 @@ $("#send-message").on("click", function (event) {
 
     /** DATABASE **/
     // Mailboxlayout API URl
-    var queryURL = "http://apilayer.net/api/check?access_key=db5b19ad7744f0ff75ec67c569062ca5&email="
+    var queryURL = "https://apilayer.net/api/check?access_key=db5b19ad7744f0ff75ec67c569062ca5&email="
         + email +"&smtp=1&format=1";
     $.ajax({
         url: queryURL,
@@ -90,7 +90,7 @@ $('#send-offer-disscount').click(function () {// ID added to html element
     // User email input
     var email = $("#email-subscriptions").val().trim(); // ID added to html element
     // Mailboxlayout API URl
-    var queryURL = "http://apilayer.net/api/check?access_key=db5b19ad7744f0ff75ec67c569062ca5&email="
+    var queryURL = "https://apilayer.net/api/check?access_key=db5b19ad7744f0ff75ec67c569062ca5&email="
         + email +"&smtp=1&format=1";
     $.ajax({
         url: queryURL,
