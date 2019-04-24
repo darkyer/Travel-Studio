@@ -96,7 +96,7 @@ $('#send-offer-disscount').click(function () {// ID added to html element
         url: queryURL,
         method: "GET"
     }).then(function(validation){
-        if (validation.valid_format){
+        if (validation.format_valid){
             // Valid format response
             // Obtaining push ID
             var pushid = database.ref('subscriptions').push().key;
