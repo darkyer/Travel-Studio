@@ -20,7 +20,14 @@ $(document).ready(function () {
     // Geolocate();
     ActivateAutoComplete();
 
-    $(document.body).on("click", ".header-logo", function () {
+    $(document.body).on("click", ".header-logo",function () {
+        $("#location").val("");
+        $("#place").val("");
+        location.reload();
+        inResultScreen = false;
+    });
+
+    $(document.body).on("click", ".footer-links",function () {
         $("#location").val("");
         $("#place").val("");
         location.reload();
