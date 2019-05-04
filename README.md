@@ -27,7 +27,7 @@ You can download this project and use it with your own Google Places API / Googl
 * **Jose Manuel Martinez Flores** - [Hongongo](https://github.com/Hongongo)
 * **Ernesto Salvador Solares Guerrero** - [darkyer](https://github.com/darkyer)
 
-See also the list of [contributors](https://github.com/darkyer/Travel-Studio//contributors) who participated in this project.
+See also the list of [contributors](https://github.com/darkyer/Travel-Studio/contributors) who participated in this project.
 
 ## License
 
@@ -42,6 +42,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## URLS
 
-[Github project](https://github.com/darkyer/bootcamp-project-1)
-[Github pages](http://darkyer.github.io/bootcamp-project-1)
+[Github project](https://github.com/darkyer/Travel-Studio/)
+[Github pages](https://darkyer.github.io/Travel-Studio/)
 
